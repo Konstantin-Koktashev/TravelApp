@@ -14,7 +14,8 @@ export const mapServices = {
     getCurrentCoords,
     getCurrentAddress,
     copyToClipboard,
-    getLocations
+    getLocations,
+
 }
 
 
@@ -33,16 +34,20 @@ function initMap(positions) {
     });
 
 
-    google.maps.event.addListener(map, 'click', function(event) {
+    google.maps.event.addListener(map, 'click', async function(event) {
 
         marker = new google.maps.Marker({ position: event.latLng, map: map });
         var lng = event.latLng.lng();
         var lat = event.latLng.lat();
         gLocations.push({ lat, lng });
-        var weather = weatherServices.getWeather({ lat, lng });
-        var address = getNameByCoords(lat, lng)
 
-        new Place(address, weather);
+
+        var weather = await weatherServices.getWeather({ lat, lng });
+        var address = await getNameByCoords(lat, lng);
+        console.log(address);
+        console.log(weather);
+        var x = new Place(address, weather);
+        x.renderPlace();
     });
 
 }
@@ -55,7 +60,7 @@ function getCordsByName(val) {
 
 function getNameByCoords(lat, lng) {
     return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`)
-        .then(res => console.log(res.data.results[0].formatted_address))
+        .then(res => (res.data.results[0].formatted_address))
 }
 
 function _setCurrentSearchResult(res) {
@@ -121,10 +126,27 @@ function addLocation() {
 }
 
 class Place {
-    static id = 101
     constructor(addres, weather) {
         this.address = addres;
         this.weather = weather;
-        this.id = id++;
+        this.id = 100;
     }
+    renderPlace() {
+
+        var elPlace = document.createElement('tr');
+        var elId = document.createElement('td');
+        var elAddress = document.createElement('td');
+        var elWeather = document.createElement('td');
+
+        elId.innerHTML = this.id;
+        elAddress.innerHTML = this.address;
+        elWeather.innerHTML = this.weather;
+
+        elPlace.appendChild(elId);
+        elPlace.appendChild(elAddress);
+        elPlace.appendChild(elWeather);
+        return document.querySelector('.new-place').appendChild(elPlace);
+
+    }
+
 }
