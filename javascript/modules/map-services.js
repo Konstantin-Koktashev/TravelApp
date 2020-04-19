@@ -1,3 +1,4 @@
+import { weatherServices } from './weather-services.js';
 const apiKey = `AIzaSyBmx3Z42ngJl3kul0Ihag6WR2-P4SW2uuI`
 var gLocations=[];
 var gCurrentLocation;
@@ -37,6 +38,7 @@ google.maps.event.addListener(map, 'click', function(event) {
     var lng= event.latLng.lng()
     var lat= event.latLng.lat()
     gLocations.push({lat,lng}) 
+    weatherServices.getWeather(positions)
 });
 
 

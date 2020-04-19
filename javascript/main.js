@@ -1,4 +1,5 @@
 import { mapServices } from './modules/map-services.js';
+import { weatherServices } from './modules/weather-services.js';
 
 window.addEventListener('load', onInit)
 
