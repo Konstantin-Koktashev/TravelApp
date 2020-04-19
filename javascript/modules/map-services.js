@@ -3,10 +3,11 @@ const apiKey=`AIzaSyBmx3Z42ngJl3kul0Ihag6WR2-P4SW2uuI`
 
 export const mapServices={
     initMap,
-    getMyLocaiton,
     addNewMarker,
-    addLocation
+    addLocation,
+    getMyLocation,
 }
+
 function initMap(positions) {
     if(!positions) positions={lat:31.0461,lng:34.8516}
 var options={
@@ -22,9 +23,25 @@ var marker = new google.maps.Marker({
   
 }
   
-function getMyLocaiton(){
+function getMyLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } 
+  }
 
-}
+
+//   function showPosition(position) {
+
+//    console.dir(position.coords.latitude);
+//    console.dir(position.coords.longitude);
+//   }
+
+  function showPosition(position) {
+    const {coords:{latitude}}=position
+    const {coords:{longitude}}=position
+    initMap({lat:latitude,lng:longitude})
+     
+  }
 
 function addNewMarker(){
     
