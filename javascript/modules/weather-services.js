@@ -1,4 +1,5 @@
 // import { mapServices } from './map-services.js';
+import { ShowClickedWeather } from '../main.js';
 
 export const weatherServices = {
     getWeather,

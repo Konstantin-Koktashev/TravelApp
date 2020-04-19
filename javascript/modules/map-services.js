@@ -1,4 +1,6 @@
 import { weatherServices } from './weather-services.js';
+import { ShowClickedWeather } from '../main.js';
+
 const apiKey = `AIzaSyBmx3Z42ngJl3kul0Ihag6WR2-P4SW2uuI`
 var gCurrentLocation;
 var gLocations = [];
@@ -44,8 +46,7 @@ function initMap(positions) {
 
         var weather = await weatherServices.getWeather({ lat, lng });
         var address = await getNameByCoords(lat, lng);
-        console.log(address);
-        console.log(weather);
+        ShowClickedWeather.renderCurrentWeather(weather);
         var x = new Place(address, weather);
         x.renderPlace();
     });
