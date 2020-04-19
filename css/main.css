@@ -63,9 +63,14 @@ td {
     border-radius: 5px;
 }
 
+.logo-svg {
+    height: 100px;
+    width: 100px;
+}
+
 .upper-nav {
     width: 55%;
-    height: 80%;
+    height: 100%;
 }
 
 .search-input {
@@ -74,7 +79,9 @@ td {
 }
 
 .hit-search-btn {
-    font-size: 2em;
+    margin-left: 10px;
+    font-size: 1.8em;
+    width: 48px;
     padding: 10px;
     background-color: white;
 }
@@ -113,6 +120,7 @@ td {
 .weather {
     height: 40%;
     width: 100%;
+    margin-top: 30px;
     background-color: white;
 }
 
@@ -157,9 +165,4 @@ td {
 
 .column {
     flex-direction: column;
-}
-
-.logo-svg{
-    height: 20px;
-    width: 20px;
 }

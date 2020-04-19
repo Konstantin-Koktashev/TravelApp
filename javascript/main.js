@@ -4,7 +4,7 @@ window.addEventListener('load', onInit)
 
 function onInit(){
     bindEvents()
- renderMap()
+    renderMap()
     
 
 }
@@ -22,8 +22,6 @@ function renderMap(){
 
 function onSearchLocation(){
     var value=document.querySelector('nav input').value
-
-
 }
 
 
