@@ -12,7 +12,7 @@ var options={
     zoom:8,
     center:{lat:42,lng:45}
 }
-var map=new google.maps.Map(document.querySelector('main'),options);
+var map=new google.maps.Map(document.querySelector('.map-spot'),options);
 }
   
 function getMyLocaiton(){

@@ -5,21 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Travel App</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/reset.css">
+    <!-- <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/reset.css"> -->
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
 
-    <div class="wrapper">
-    <head>Welcome</h1>
-            <img class="logo-svg " src="imgs/icons8-google-maps.svg">
-            <h1>Welcome</h1>
-            <nav>
-                <input type="text" placeholder="Enter Location">
-                <a href="">GO</a>
-                <a href="">My Location</a>
+    <div class="wrapper flex column align-center">
+
+        <header class="flex space-between">
+            <div class="logo-area flex column">
+                <img class="logo-svg " src="imgs/icons8-google-maps.svg">
+                <h1>TravelTip</h1>
+            </div>
+            <nav class="upper-nav flex column align-center justify-center">
+                <div class="search-area">
+                    <input class="search-input" type="text" placeholder="Enter Location">
+                    <a class="hit-search-btn" href="#/">GO</a>
+                </div>
+                <a class="my-location-btn" href="#/">My Location</a>
             </nav>
         </header>
 
@@ -51,5 +56,36 @@
 <script type="module" src="javascript/main.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmx3Z42ngJl3kul0Ihag6WR2-P4SW2uuI"></script>
 
+        <main class="main-content flex space-between">
+            <aside class="side-area flex column space-between">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>id</th>
+                            <th colspan="2">Info Weather</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr>
+                            <td class="location-id">id-xxx</td>
+                            <td class="location-info">tel aviv</td>
+                            <td class="location-weather">mostly sunny</td>
+                            <td class="location-action"><a href="#/">Action</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="weather"> weather
+                </div>
+            </aside>
+
+            <div class="map-spot">
+            </div>
+        </main>
+
+        <footer>
+        </footer>
+
+    </div>
+    <script></script>
 </body>
 </html>
