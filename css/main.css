@@ -159,6 +159,7 @@ td {
     flex-direction: column;
 }
 
-.li-style-none {
-    list-style: none;
+.logo-svg{
+    height: 20px;
+    width: 20px;
 }
