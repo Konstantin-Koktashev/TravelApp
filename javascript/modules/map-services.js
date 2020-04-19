@@ -1,11 +1,13 @@
 const apiKey = `AIzaSyBmx3Z42ngJl3kul0Ihag6WR2-P4SW2uuI`
-
+var gLocations;
+var gCurrentLocation;
 export const mapServices = {
     initMap,
     addNewMarker,
     addLocation,
     getCordsByName,
-    getMyLocation
+    getMyLocation,
+    copyToClipboard
 }
 
 function initMap(positions) {
@@ -39,7 +41,6 @@ function getMyLocation() {
 
 
 //   function showPosition(position) {
-
 //    console.dir(position.coords.latitude);
 //    console.dir(position.coords.longitude);
 //   }
@@ -47,9 +48,23 @@ function getMyLocation() {
 function showPosition(position) {
     const { coords: { latitude } } = position
     const { coords: { longitude } } = position
-    initMap({ lat: latitude, lng: longitude })
-
+    var coords={ lat: latitude, lng: longitude }
+    gCurrentLocation=coords
+    initMap(coords)
 }
+
+
+function copyToClipboard() {
+    var lat=gCurrentLocation.lat
+    var lng=gCurrentLocation.lng
+    var url= `http://www.google.com/maps/place/${lat},${lng}`
+    const el = document.createElement('textarea');
+    el.value = url;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  };
 
 function addNewMarker() {
 

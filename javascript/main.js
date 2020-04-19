@@ -25,9 +25,6 @@ function onSearchLocation() {
     mapServices.getCordsByName(gCurrentSearchInput);
 }
 
-
-function onCopyLocationValue() {}
-
 function onTypeSearch(val) {
     gCurrentSearchInput = val;
 }
@@ -36,6 +33,6 @@ function getUserLocation() {
     mapServices.getMyLocation()
 }
 
-// function onCopyLocationValue() {
-//     console.log('in Copy');
-// }
+function onCopyLocationValue() {
+    mapServices.copyToClipboard()
+}
