@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +9,23 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
-    
+
     <div class="wrapper">
     <head>Welcome</h1>
             <img class="logo-svg " src="imgs/icons8-google-maps.svg">
+            <h1>Welcome</h1>
+            <nav>
+                <input type="text" placeholder="Enter Location">
+                <a href="">GO</a>
+                <a href="">My Location</a>
+            </nav>
+        </header>
+
+        <section class="my-location">
+            <h3></h3>
+            <button class="copy">Copy Location</button>
         </section>
         <nav>
             <input type="text" placeholder="Enter Location">
@@ -35,5 +48,8 @@
     </main>
     <footer></footer>
 </div>
+<script type="module" src="javascript/main.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmx3Z42ngJl3kul0Ihag6WR2-P4SW2uuI"></script>
+
 </body>
 </html>
