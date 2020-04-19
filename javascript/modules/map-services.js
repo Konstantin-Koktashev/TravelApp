@@ -1,5 +1,5 @@
 const apiKey = `AIzaSyBmx3Z42ngJl3kul0Ihag6WR2-P4SW2uuI`
-var gLocations;
+var gLocations=[];
 var gCurrentLocation;
 export const mapServices = {
     initMap,
@@ -9,7 +9,8 @@ export const mapServices = {
     getMyLocation,
     getCurrentCoords,
     getCurrentAddress,
-    copyToClipboard
+    copyToClipboard,
+    getLocations
 }
 
 var gCurrentCoords;
@@ -17,6 +18,7 @@ var gCurrentAddress;
 
 function initMap(positions) {
     if (!positions) positions = { lat: 31.0461, lng: 34.8516 }
+    gLocations.push(positions)
     var options = {
         zoom: 8,
         center: positions
@@ -27,6 +29,17 @@ function initMap(positions) {
         map: map,
         title: 'First Marker'
     });
+    
+
+google.maps.event.addListener(map, 'click', function(event) {
+
+    marker = new google.maps.Marker({position: event.latLng, map: map});
+    var lng= event.latLng.lng()
+    var lat= event.latLng.lat()
+    gLocations.push({lat,lng}) 
+});
+
+
 
 }
 
@@ -48,6 +61,9 @@ function getCurrentAddress() {
 function getCurrentCoords() {
     return gCurrentCoords;
 }
+function getLocations(){
+    return gLocations
+}
 
 
 
@@ -66,22 +82,24 @@ function getMyLocation() {
 function showPosition(position) {
     const { coords: { latitude } } = position
     const { coords: { longitude } } = position
-    var coords = { lat: latitude, lng: longitude }
+     const coords = { lat: latitude, lng: longitude }
     gCurrentLocation = coords
     initMap(coords)
 }
 
 
 function copyToClipboard() {
-    var lat = gCurrentLocation.lat
-    var lng = gCurrentLocation.lng
-    var url = `http://www.google.com/maps/place/${lat},${lng}`
-    const el = document.createElement('textarea');
+    let lastLocation=gLocations[gLocations.length-1]
+    let lat = lastLocation.lat
+    let lng = lastLocation.lng
+    let url = `http://www.google.com/maps/place/${lat},${lng}`
+    let el = document.createElement('textarea');
     el.value = url;
     document.body.appendChild(el);
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
+    
 };
 
 function addNewMarker() {
