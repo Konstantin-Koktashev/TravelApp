@@ -1,3 +1,4 @@
+import { weatherServices } from './weather-services.js';
 const apiKey = `AIzaSyBmx3Z42ngJl3kul0Ihag6WR2-P4SW2uuI`
 var gCurrentLocation;
 var gLocations = [];
@@ -24,7 +25,6 @@ function initMap(positions) {
         zoom: 8,
         center: positions
     }
-    console.log(getLocations());
     var map = new google.maps.Map(document.querySelector('.map-spot'), options);
     var marker = new google.maps.Marker({
         position: positions,
@@ -39,11 +39,10 @@ function initMap(positions) {
         var lng = event.latLng.lng();
         var lat = event.latLng.lat();
         gLocations.push({ lat, lng });
-        var addresslat = gLocations[gLocations.length - 1].lat;
-        var addresslng = gLocations[gLocations.length - 1].lng;
+        var weather = weatherServices.getWeather({ lat, lng });
+        var address = getNameByCoords(lat, lng)
 
-        new Place(getNameByCoords(addresslat, addresslng), 'str');
-
+        new Place(address, weather);
     });
 
 }
