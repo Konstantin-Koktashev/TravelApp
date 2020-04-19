@@ -1,3 +1,122 @@
+/*--------------------------------------------- LAYOUT --------------------------------------*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    font-family: monospace;
+}
+
+
+/*------------------------------------- BASICS ---------------------------------------------*/
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #8da1b2;
+}
+
+header {
+    width: 100%;
+    background-color: #a2c9b0a3;
+    padding: 15px;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    border: 1px solid black;
+}
+
+td {
+    border: 1px solid black;
+}
+
+
+/*------------------------------------- COMPONENTS ---------------------------------------------*/
+
+.wrapper {
+    width: 80vw;
+    background-color: #77c2d1;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.upper-nav {
+    width: 55%;
+    height: 80%;
+}
+
+.search-input {
+    width: 220px;
+    height: 50px;
+}
+
+.hit-search-btn {
+    font-size: 2em;
+    padding: 10px;
+    background-color: white;
+}
+
+.my-location-btn {
+    font-size: 1.5em;
+    padding-top: 15px;
+}
+
+.my-location {
+    width: 100%;
+    padding-top: 5vh;
+}
+
+.copy {
+    font-size: 2em;
+    font-family: monospace;
+}
+
+.main-content {
+    width: 100%;
+    padding-top: 5vh;
+}
+
+.map-spot {
+    height: 50vh;
+    width: 50%;
+    background-color: white;
+}
+
+.side-area {
+    width: 40%;
+    height: 100%;
+}
+
+.weather {
+    height: 40%;
+    width: 100%;
+    background-color: white;
+}
+
+
 /* ------------------helpers------------------- */
 
 .flex {
@@ -22,6 +141,10 @@
 
 .space-between {
     justify-content: space-between;
+}
+
+.space-evenly {
+    justify-content: space-evenly;
 }
 
 .justify-center {
