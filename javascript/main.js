@@ -11,7 +11,7 @@ function onInit(){
 
 
 function bindEvents() {
-    document.querySelector('.go-to-location').addEventListener('click', onSearchLocation);
+    document.querySelector('.hit-search-btn').addEventListener('click', onSearchLocation);
     document.querySelector('.my-location').addEventListener('click', getMyLocation);
     document.querySelector('.copy').addEventListener('click', onCopyLocationValue);
 }
