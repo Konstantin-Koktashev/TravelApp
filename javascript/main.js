@@ -27,8 +27,6 @@ async function onSearchLocation() {
     document.querySelector('.my-location h3').innerText = mapServices.getCurrentAddress();
 }
 
-function onCopyLocationValue() {}
-
 function onTypeSearch(val) {
     gCurrentSearchInput = val;
 }
@@ -37,6 +35,6 @@ function getUserLocation() {
     mapServices.getMyLocation()
 }
 
-// function onCopyLocationValue() {
-//     console.log('in Copy');
-// }
+function onCopyLocationValue() {
+    mapServices.copyToClipboard()
+}
