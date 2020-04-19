@@ -13,7 +13,7 @@ var gCurrentSearchInput = '';
 function bindEvents() {
     document.querySelector('.hit-search-btn').addEventListener('click', onSearchLocation);
     document.querySelector('.search-input').addEventListener('input', function(evt) { onTypeSearch(this.value) });
-    document.querySelector('.my-location').addEventListener('click', getMyLocation);
+    document.querySelector('.my-location-btn').addEventListener('click', getUserLocation);
     document.querySelector('.copy').addEventListener('click', onCopyLocationValue);
 }
 
@@ -26,10 +26,16 @@ function onSearchLocation() {
 }
 
 
-function getMyLocation() {}
-
 function onCopyLocationValue() {}
 
 function onTypeSearch(val) {
     gCurrentSearchInput = val;
 }
+
+function getUserLocation() {
+    mapServices.getMyLocation()
+}
+
+// function onCopyLocationValue() {
+//     console.log('in Copy');
+// }

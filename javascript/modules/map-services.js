@@ -2,10 +2,10 @@ const apiKey = `AIzaSyBmx3Z42ngJl3kul0Ihag6WR2-P4SW2uuI`
 
 export const mapServices = {
     initMap,
-    getMyLocaiton,
     addNewMarker,
     addLocation,
-    getCordsByName
+    getCordsByName,
+    getMyLocation
 }
 
 function initMap(positions) {
@@ -29,7 +29,25 @@ function getCordsByName(val) {
         .then(initMap)
 }
 
-function getMyLocaiton() {
+
+
+function getMyLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+}
+
+
+//   function showPosition(position) {
+
+//    console.dir(position.coords.latitude);
+//    console.dir(position.coords.longitude);
+//   }
+
+function showPosition(position) {
+    const { coords: { latitude } } = position
+    const { coords: { longitude } } = position
+    initMap({ lat: latitude, lng: longitude })
 
 }
 
