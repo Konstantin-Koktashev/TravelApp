@@ -1,6 +1,9 @@
 const apiKey = `AIzaSyBmx3Z42ngJl3kul0Ihag6WR2-P4SW2uuI`
-var gLocations=[];
 var gCurrentLocation;
+var gLocations = [];
+var gCurrentCoords;
+var gCurrentAddress;
+
 export const mapServices = {
     initMap,
     addNewMarker,
@@ -13,8 +16,6 @@ export const mapServices = {
     getLocations
 }
 
-var gCurrentCoords;
-var gCurrentAddress;
 
 function initMap(positions) {
     if (!positions) positions = { lat: 31.0461, lng: 34.8516 }
@@ -23,30 +24,39 @@ function initMap(positions) {
         zoom: 8,
         center: positions
     }
+    console.log(getLocations());
     var map = new google.maps.Map(document.querySelector('.map-spot'), options);
     var marker = new google.maps.Marker({
         position: positions,
         map: map,
         title: 'First Marker'
     });
-    
-
-google.maps.event.addListener(map, 'click', function(event) {
-
-    marker = new google.maps.Marker({position: event.latLng, map: map});
-    var lng= event.latLng.lng()
-    var lat= event.latLng.lat()
-    gLocations.push({lat,lng}) 
-});
 
 
+    google.maps.event.addListener(map, 'click', function(event) {
+
+        marker = new google.maps.Marker({ position: event.latLng, map: map });
+        var lng = event.latLng.lng();
+        var lat = event.latLng.lat();
+        gLocations.push({ lat, lng });
+        var addresslat = gLocations[gLocations.length - 1].lat;
+        var addresslng = gLocations[gLocations.length - 1].lng;
+
+        new Place(getNameByCoords(addresslat, addresslng), 'str');
+
+    });
 
 }
 
 function getCordsByName(val) {
-    return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${val}&key=AIzaSyBmx3Z42ngJl3kul0Ihag6WR2-P4SW2uuI`)
+    return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${val}&key=${apiKey}`)
         .then(res => (res.data.results[0]))
         .then(_setCurrentSearchResult)
+}
+
+function getNameByCoords(lat, lng) {
+    return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`)
+        .then(res => console.log(res.data.results[0].formatted_address))
 }
 
 function _setCurrentSearchResult(res) {
@@ -61,7 +71,8 @@ function getCurrentAddress() {
 function getCurrentCoords() {
     return gCurrentCoords;
 }
-function getLocations(){
+
+function getLocations() {
     return gLocations
 }
 
@@ -80,16 +91,16 @@ function getMyLocation() {
 //   }
 
 function showPosition(position) {
-    const { coords: { latitude } } = position
-    const { coords: { longitude } } = position
-     const coords = { lat: latitude, lng: longitude }
-    gCurrentLocation = coords
-    initMap(coords)
+    const { coords: { latitude } } = position;
+    const { coords: { longitude } } = position;
+    const coords = { lat: latitude, lng: longitude };
+    gCurrentLocation = coords;
+    initMap(coords);
 }
 
 
 function copyToClipboard() {
-    let lastLocation=gLocations[gLocations.length-1]
+    let lastLocation = gLocations[gLocations.length - 1]
     let lat = lastLocation.lat
     let lng = lastLocation.lng
     let url = `http://www.google.com/maps/place/${lat},${lng}`
@@ -99,7 +110,7 @@ function copyToClipboard() {
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-    
+
 };
 
 function addNewMarker() {
@@ -108,4 +119,13 @@ function addNewMarker() {
 
 function addLocation() {
 
+}
+
+class Place {
+    static id = 101
+    constructor(addres, weather) {
+        this.address = addres;
+        this.weather = weather;
+        this.id = id++;
+    }
 }
