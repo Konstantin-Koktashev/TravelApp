@@ -1,29 +1,35 @@
-import {mapServices} from './modules/map-services.js';
+import { mapServices } from './modules/map-services.js';
 
 window.addEventListener('load', onInit)
 
-function onInit(){
+function onInit() {
     bindEvents()
     renderMap()
-    
-
 }
+
+var gCurrentSearchInput = '';
 
 
 function bindEvents() {
     document.querySelector('.hit-search-btn').addEventListener('click', onSearchLocation);
+    document.querySelector('.search-input').addEventListener('input', function(evt) { onTypeSearch(this.value) });
     document.querySelector('.my-location').addEventListener('click', getMyLocation);
     document.querySelector('.copy').addEventListener('click', onCopyLocationValue);
 }
 
-function renderMap(){
+function renderMap() {
     mapServices.initMap()
 }
 
-function onSearchLocation(){
-    var value=document.querySelector('nav input').value
+function onSearchLocation() {
+    mapServices.getCordsByName(gCurrentSearchInput);
 }
 
 
-function getMyLocation(){}
-function onCopyLocationValue(){}
+function getMyLocation() {}
+
+function onCopyLocationValue() {}
+
+function onTypeSearch(val) {
+    gCurrentSearchInput = val;
+}
