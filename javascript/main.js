@@ -1,9 +1,14 @@
 import { mapServices } from './modules/map-services.js';
-import { weatherServices } from './modules/weather-services.js';
+import { weatherServices }  from './modules/weather-services.js';
+export const ShowClickedWeather = {
+    renderCurrentWeather
+}
 
 window.addEventListener('load', onInit)
 
 function onInit() {
+    var url=window.location.href 
+    console.log(url);
     bindEvents()
     renderMap()
 }
@@ -38,4 +43,8 @@ function getUserLocation() {
 
 function onCopyLocationValue() {
     mapServices.copyToClipboard()
+}
+
+function renderCurrentWeather(str){
+    document.querySelector('.weather span').innerText=str
 }

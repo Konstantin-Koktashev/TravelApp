@@ -1,4 +1,5 @@
 // import { mapServices } from './map-services.js';
+import { ShowClickedWeather } from '../main.js';
 
 export const weatherServices = {
   getWeather,
@@ -11,5 +12,7 @@ async function getWeather(location) {
     `http://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lng}&APPID=${weatherApiKey}`
   );
   const weatherDescription = ans.data.weather[0].description;
+  ShowClickedWeather.renderCurrentWeather(weatherDescription);
+
   console.log(weatherDescription);
 }
