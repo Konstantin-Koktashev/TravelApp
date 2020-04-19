@@ -5,8 +5,14 @@ export const mapServices = {
     addNewMarker,
     addLocation,
     getCordsByName,
-    getMyLocation
+    getMyLocation,
+    getCurrentCoords,
+    getCurrentAddress,
+
 }
+
+var gCurrentCoords;
+var gCurrentAddress;
 
 function initMap(positions) {
     if (!positions) positions = { lat: 31.0461, lng: 34.8516 }
@@ -25,8 +31,21 @@ function initMap(positions) {
 
 function getCordsByName(val) {
     return axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${val}&key=AIzaSyBmx3Z42ngJl3kul0Ihag6WR2-P4SW2uuI`)
-        .then(res => (res.data.results[0].geometry.location))
-        .then(initMap)
+        .then(res => (res.data.results[0]))
+        .then(_setCurrentSearchResult)
+}
+
+function _setCurrentSearchResult(res) {
+    gCurrentAddress = res.formatted_address;
+    gCurrentCoords = res.geometry.location;
+}
+
+function getCurrentAddress() {
+    return gCurrentAddress;
+}
+
+function getCurrentCoords() {
+    return gCurrentCoords;
 }
 
 

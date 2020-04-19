@@ -21,10 +21,11 @@ function renderMap() {
     mapServices.initMap()
 }
 
-function onSearchLocation() {
-    mapServices.getCordsByName(gCurrentSearchInput);
+async function onSearchLocation() {
+    await mapServices.getCordsByName(gCurrentSearchInput);
+    mapServices.initMap(mapServices.getCurrentCoords())
+    document.querySelector('.my-location h3').innerText = mapServices.getCurrentAddress();
 }
-
 
 function onCopyLocationValue() {}
 
